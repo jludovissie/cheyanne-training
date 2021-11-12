@@ -1,0 +1,36 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Workout</th>
+      <th scope="col">Pitch</th>
+      <th scope="col">Reps</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let workout of workouts; let i = index">
+      <th scope="row">{{ Date }}</th>
+      <td>{{ workout.workout }}</td>
+      <td>{{ workout.Set }}</td>
+      <td (click)="onDelete(i)">X</td>
+    </tr>
+</tbody>
+</table>
+
+<div>
+  <input type="text" [(ngModel)]="workout" placeholder="Pitch"  />
+  <input type="text" [(ngModel)]="set" placeholder="Reps"/>
+  <button (click)="onAddWorkout()">Add Pitch</button>
+
+  <hr/>
+  <!-- <button (click)="onAddSet()">Add Set</button> -->
+
+<p> Rest Timer: {{ timeLeft }} <button class="btn btn-secondary" (click)="startRest()">Start Timer </button> </p>
+
+<div class="container-fluid">
+  <label for ="range">Difficulty of Workout: {{ value.value }} </label>
+<input type="range" min="1" max="100" value="50" class="slider" id="myRange" (click)="slider()">
+
+<button class="btn btn-btn">Log Workout</button>
+</div>
+</div>

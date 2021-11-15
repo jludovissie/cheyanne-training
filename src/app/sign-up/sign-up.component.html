@@ -1,19 +1,19 @@
-<h2 class="text-center">Ready to get started?</h2>
+<h2 class="text-center">Create an Account</h2>
 <form class="container-fluid bg-3" (ngSubmit)="onSubmit(f)" #f="ngForm">
-  <div class="form-group">
-    <label for="fname">First Name:</label>
+  <div class="form-group-inline">
+    <label for="fname">*First Name:</label>
     <input type="text" class="form-control" id="fname" ngModel name="fname" required>
   </div>
   <div class="form-group">
-    <label for="lname">Last Name</label>
+    <label for="lname">*Last Name</label>
     <input type="lname" class="form-control" id="lname" ngModel name="lname" required>
   </div>
   <div class="form-group">
     <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email" ngModel name="email">
+    <input type="email" class="form-control" id="email" ngModel name="email" #email="ngModel">
   </div>
   <div class="form-group">
-    <label for="phone">Phone Number:</label>
+    <label for="phone">*Phone Number:</label>
     <input type="phone" class="form-control" id="phone" ngModel name="phone" required>
   </div>
   <div class="form-group">
@@ -26,7 +26,7 @@
   </div>
   <div class="form-group">
     <label for="coach">Coach:</label>
-    <input type="coach" class="form-control" id="coach" ngModel name="phone">
+    <input type="coach" class="form-control" id="coach" ngModel name="coach">
   </div>
 
 
@@ -40,4 +40,6 @@
     </select>
   </div>
   <button type="submit" class="btn btn-default" [disabled]="!f.valid">Submit</button>
+
+
 </form>

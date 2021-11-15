@@ -9,10 +9,13 @@ import { NgForm } from '@angular/forms';
 export class SignUpComponent implements OnInit {
 @ViewChild('f') signupForm : NgForm;
 
+
 constructor() { }
 
 ngOnInit(): void {}
 onSubmit(signupForm : NgForm){
 console.log(this.signupForm)
 }
+
+
 }

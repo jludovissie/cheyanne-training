@@ -9,6 +9,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
 import { WorkoutplannerComponent } from './workoutplanner/workoutplanner.component';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,13 +19,15 @@ import { RouterModule } from '@angular/router';
     NavbarComponent,
     HomeComponent,
     SignUpComponent,
-    WorkoutplannerComponent
+    WorkoutplannerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

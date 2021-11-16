@@ -1,45 +1,20 @@
-<h2 class="text-center">Create an Account</h2>
-<form class="container-fluid bg-3" (ngSubmit)="onSubmit(f)" #f="ngForm">
-  <div class="form-group-inline">
-    <label for="fname">*First Name:</label>
-    <input type="text" class="form-control" id="fname" ngModel name="fname" required>
+<h3 class="text-center">
+  Create your account!
+  <small class="text-muted">you wont regret it</small>
+</h3>
+<form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ngModel email required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
-    <label for="lname">*Last Name</label>
-    <input type="lname" class="form-control" id="lname" ngModel name="lname" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" class="form-control" id="password" minlength="6" placeholder="Password" ngModel required>
   </div>
-  <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email" ngModel name="email" #email="ngModel">
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1" required >I have read terms and conditions</label>
   </div>
-  <div class="form-group">
-    <label for="phone">*Phone Number:</label>
-    <input type="phone" class="form-control" id="phone" ngModel name="phone" required>
-  </div>
-  <div class="form-group">
-    <label for="grade">Grade:</label>
-    <input type="grade" class="form-control" id="grade" ngModel name="grade">
-  </div>
-  <div class="form-group">
-    <label for="school">High School</label>
-    <input type="school" class="form-control" id="school" ngModel name="school">
-  </div>
-  <div class="form-group">
-    <label for="coach">Coach:</label>
-    <input type="coach" class="form-control" id="coach" ngModel name="coach">
-  </div>
-
-
-  <div class="form-group">
-    <label for="exp">Years of Playing Experiance:</label>
-    <select class="form-control" id="exp">
-      <option>None</option>
-      <option>Less than 1</option>
-      <option>1-3</option>
-      <option>3+</option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-default" [disabled]="!f.valid">Submit</button>
-
-
+  <button type="submit"  class="btn btn-primary">Submit</button>
 </form>

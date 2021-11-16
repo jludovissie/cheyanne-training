@@ -11,6 +11,8 @@ import { WorkoutplannerComponent } from './workoutplanner/workoutplanner.compone
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     SignUpComponent,
     WorkoutplannerComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingSpinnerComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

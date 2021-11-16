@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-workoutplanner',
@@ -11,17 +13,17 @@ export class WorkoutplannerComponent implements OnInit {
   timeLeft: number;
   timerInterval: any;
   Date= new Date();
-  value: any;
+  value: number= 50;
 
-  workouts= [
-    { workout: 'Fastball', Set: '30 Pitches' },
+     workouts= [
+    /* { workout: 'Fastball', Set: '30 Pitches' },
     { workout: 'Riseball', Set: '30 Pitches' },
     { workout: 'Dropball', Set: '30 Picthes' },
-    { workout: 'Change Up', Set: '30 Pitches'}
+    { workout: 'Change Up', Set: '30 Pitches'} */
   ];
 
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +44,19 @@ export class WorkoutplannerComponent implements OnInit {
      },1000)
    }
    slider(){
-    this.value = document.getElementById("myRange")
+    this.value = parseFloat((<HTMLInputElement>document.getElementById("myRange")).value)
+  }
+  onSubmitWorkout(){
+    this.http.post('https://courseproject-7f1e5-default-rtdb.firebaseio.com/posts.json', this.workouts).subscribe(resData =>{
+      console.log(resData)
+    }
+
+    )
+  }
+  onFetchWorkout(){
+    this.http.get('https://courseproject-7f1e5-default-rtdb.firebaseio.com/posts.json' ).subscribe(workouts => {
+      console.log(Object.entries(workouts));
+      this.workouts = Object.entries(workouts)[0][1]
+    })
   }
 }

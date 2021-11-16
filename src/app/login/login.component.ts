@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {  AuthResponseData, AuthService } from './auth.service';
 
@@ -13,7 +14,8 @@ isLoginMode = true;
 isLoading = false;
 error: string = null;
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,
+              private route: Router) { }
 
   ngOnInit(): void {}
 
@@ -26,15 +28,15 @@ onSubmit(form:NgForm){
   let authObs: Observable<AuthResponseData>
 
     this.isLoading = true;
-    if (this.isLoginMode){
+    {
       authObs = this.authService.login(email, password);
-    } else {
-      authObs = this.authService.signup(email, password); }
+    }
 
       authObs.subscribe(
         resData => {
           console.log(resData);
           this.isLoading= false;
+          this.route.navigate(['/workout'])
         },
         errorMessage => {
           console.log(errorMessage);

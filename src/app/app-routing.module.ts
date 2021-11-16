@@ -9,8 +9,8 @@ const routes: Routes = [
 
     {path:"", component: HomeComponent, pathMatch: 'full'},
     {path:'workout' , component: WorkoutplannerComponent},
-    {path:'contact', component: SignUpComponent},
-    {path:'login' , component: LoginComponent}
+    {path:'signup', component: SignUpComponent},
+    {path:'login' , component: LoginComponent},
   ]
 
 

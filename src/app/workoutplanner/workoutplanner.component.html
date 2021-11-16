@@ -28,9 +28,11 @@
 <p> Rest Timer: {{ timeLeft }} <button class="btn btn-secondary" (click)="startRest()">Start Timer </button> </p>
 
 <div class="container-fluid">
-  <label for ="range">Difficulty of Workout: {{ value.value }} </label>
-<input type="range" min="1" max="100" value="50" class="slider" id="myRange" (click)="slider()">
+  <label for ="range">Difficulty of Workout: {{ value }} </label>
+<input type="range" min="Easy" max="Hard" value="Medium" class="slider" id="myRange" (click)="slider()">
 
-<button class="btn btn-btn">Log Workout</button>
+<button (click)="onSubmitWorkout()" class="btn btn-btn">Log Workout</button>
+<button (click)="onFetchWorkout()" >Fetch Workout</button>
+
 </div>
 </div>

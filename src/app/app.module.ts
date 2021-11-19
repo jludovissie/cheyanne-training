@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ContactComponent } from './contact/contact.component';
+import { DropdownDirective } from './navbar/dropdown.directive';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ContactComponent } from './contact/contact.component';
     WorkoutplannerComponent,
     LoginComponent,
     LoadingSpinnerComponent,
-    ContactComponent
+    ContactComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

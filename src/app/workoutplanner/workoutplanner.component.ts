@@ -14,12 +14,13 @@ export class WorkoutplannerComponent implements OnInit {
   timerInterval: any;
   Date= new Date();
   value: number= 50;
+  isFetching= false;
 
      workouts= [
-    /* { workout: 'Fastball', Set: '30 Pitches' },
+    { workout: 'Fastball', Set: '30 Pitches' },
     { workout: 'Riseball', Set: '30 Pitches' },
     { workout: 'Dropball', Set: '30 Picthes' },
-    { workout: 'Change Up', Set: '30 Pitches'} */
+    { workout: 'Change Up', Set: '30 Pitches'}
   ];
 
 
@@ -57,6 +58,12 @@ export class WorkoutplannerComponent implements OnInit {
     this.http.get('https://courseproject-7f1e5-default-rtdb.firebaseio.com/posts.json' ).subscribe(workouts => {
       console.log(Object.entries(workouts));
       this.workouts = Object.entries(workouts)[0][1]
-    })
+    });
+    }
+    onClearLog(){
+      return this.http.delete(
+      'https://courseproject-7f1e5-default-rtdb.firebaseio.com/posts.json').subscribe(() => {
+        this.workouts = [];
+      })
   }
 }

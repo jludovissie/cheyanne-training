@@ -23,7 +23,7 @@
   <button (click)="onAddWorkout()">Add Pitch</button>
 
   <hr/>
-  <!-- <button (click)="onAddSet()">Add Set</button> -->
+
 
 <p> Rest Timer: {{ timeLeft }} <button class="btn btn-secondary" (click)="startRest()">Start Timer </button> </p>
 
@@ -34,5 +34,13 @@
 <button (click)="onSubmitWorkout()" class="btn btn-btn">Log Workout</button>
 <button (click)="onFetchWorkout()" >Fetch Workout</button>
 
+<h2>Workout Log</h2>
+<ul *ngIf= "workouts.length >= 1 && !isFetching">
+  <li *ngFor="let workout of workouts">
+    <h3> {{ workout.workout }} </h3>
+    <p>  {{ workout.Set }} </p>
+  </li>
+  <button (click)="onClearLog()">Reset Log</button>
+</ul>
 </div>
 </div>

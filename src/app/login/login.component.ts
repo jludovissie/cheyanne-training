@@ -46,4 +46,7 @@ onSubmit(form:NgForm){
       )
   form.reset()
 }
+  onSwitchMode(){
+    this.isLoginMode = !this.isLoginMode;
+  }
 }

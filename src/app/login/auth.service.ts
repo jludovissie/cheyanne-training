@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Subject, throwError } from "rxjs";
+import { BehaviorSubject, Subject, throwError } from "rxjs";
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { User } from './user.model';
 import { tap , catchError } from 'rxjs/operators';
+import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 export interface AuthResponseData {
   kind: string;
@@ -19,13 +21,16 @@ export interface AuthResponseData {
 })
 
 export class AuthService{
-  user= new Subject<User>()
+  currentUser = new BehaviorSubject<User>(null);
+  userToken: string = null ;
 
-  constructor(private http: HttpClient){}
+  //user= new Subject<User>();
+
+  constructor(private http: HttpClient , private router : Router){}
 
   signup(email: string, password: string){
     return this.http.post<AuthResponseData>
-    ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD4zpWORbIcVL3ygkMkj4pSG-Sp4DLgrh0' ,
+    ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=environment.firebaseAPIKey' ,
       {
         email: email,
         password: password,
@@ -39,7 +44,7 @@ export class AuthService{
 
   login(email:string, password: string){
     return this.http.post<AuthResponseData>
-    ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD4zpWORbIcVL3ygkMkj4pSG-Sp4DLgrh0',
+    ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=environment.firebaseAPIKey',
       {
         email: email,
         password: password,
@@ -63,7 +68,8 @@ export class AuthService{
         token,
         expirationDate
       );
-      this.user.next(user);
+      this.currentUser.next(user);
+      localStorage.setItem("userData", JSON.stringify(user))
   }
   private handleError(errorRes: HttpErrorResponse){
     let errorMessage = 'An unknown error has occurred';
@@ -84,5 +90,9 @@ export class AuthService{
     }
       return throwError(errorMessage)
   };
+  signOut(){
+    this.currentUser.next(null);
+    this.router.navigate(['home'])
+  }
 
 };

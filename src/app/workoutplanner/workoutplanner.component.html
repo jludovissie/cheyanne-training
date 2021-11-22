@@ -1,15 +1,21 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Workout</th>
-      <th scope="col">Pitch</th>
+      <th scope="col">Completed</th>
+      <th scope="col">Date/Time</th>
+      <th scope="col">Drill</th>
       <th scope="col">Reps</th>
       <th scope="col">Delete</th>
+
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let workout of workouts; let i = index">
-      <th scope="row">{{ Date }}</th>
+      <th>
+        <div class="checkbox">
+        <label><input type="checkbox" value=""></label>
+        </div></th>
+      <th scope="row">{{ Date | date:'short' }}</th>
       <td>{{ workout.workout }}</td>
       <td>{{ workout.Set }}</td>
       <td (click)="onDelete(i)">X</td>
@@ -18,9 +24,9 @@
 </table>
 
 <div>
-  <input type="text" [(ngModel)]="workout" placeholder="Pitch"  />
+  <input type="text" [(ngModel)]="workout" placeholder="Drill"  />
   <input type="text" [(ngModel)]="set" placeholder="Reps"/>
-  <button (click)="onAddWorkout()">Add Pitch</button>
+  <button (click)="onAddWorkout()">Add Drill</button>
 
   <hr/>
 
@@ -31,16 +37,16 @@
   <label for ="range">Difficulty of Workout: {{ value }} </label>
 <input type="range" min="Easy" max="Hard" value="Medium" class="slider" id="myRange" (click)="slider()">
 
-<button (click)="onSubmitWorkout()" class="btn btn-btn">Log Workout</button>
-<button (click)="onFetchWorkout()" >Fetch Workout</button>
 
-<h2>Workout Log</h2>
-<ul *ngIf= "workouts.length >= 1 && !isFetching">
-  <li *ngFor="let workout of workouts">
-    <h3> {{ workout.workout }} </h3>
-    <p>  {{ workout.Set }} </p>
-  </li>
-  <button (click)="onClearLog()">Reset Log</button>
-</ul>
+<!-- <button (click)="onFetchWorkout()" >Fetch Workout</button> -->
+
 </div>
 </div>
+<form>
+  <h1>Journal</h1>
+  <div class="form-group">
+    <label for="comment">{{ Date | date: 'short'  }} </label>
+    <textarea class="form-control" rows="5" id="comment"></textarea>
+    <button (click)="onSubmitWorkout()" class="btn btn-btn">Log Workout</button>
+  </div>
+</form>

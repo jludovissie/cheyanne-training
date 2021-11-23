@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../login/auth.service';
 
@@ -9,7 +10,8 @@ import { AuthService } from '../login/auth.service';
 export class NavbarComponent implements OnInit {
   isAuthenticated= false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
   this.authService.currentUser.subscribe((user) =>{

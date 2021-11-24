@@ -6,11 +6,16 @@ body {
 p {font-size: 16px;}
 .margin {margin-bottom: 45px;}
 .bg-1 {
+
   background-color: #1abc9c; /* Green */
   color: #ffffff;
 }
 .bg-2 {
+  background-image: url(src/assets/Images/Seams-transparent.png);
+  background-repeat: no-repeat;
+  background-size: contain;
   background-color: #474e5d; /* Dark Blue */
+
   color: #ffffff;
 }
 .bg-3 {
@@ -21,6 +26,10 @@ p {font-size: 16px;}
   background-color: #2f2f2f; /* Black Gray */
   color: #fff;
 }
+.bg-5{
+  background-color: #474e5d;
+  color: white
+}
 .container-fluid {
   padding-top: 70px;
   padding-bottom: 70px;
@@ -30,4 +39,7 @@ strong {
 }
 .panel-footer{
   color: black;
+}
+.border-right {
+  border-right: 1px solid white;
 }

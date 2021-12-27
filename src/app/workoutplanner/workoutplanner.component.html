@@ -5,49 +5,105 @@
       <th scope="col">Date/Time</th>
       <th scope="col">Drill</th>
       <th scope="col">Reps</th>
-      <th scope="col">Goal</th>
       <th scope="col">Delete</th>
-
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let workout of workouts; let i = index">
       <th>
         <div class="checkbox">
-        <label><input type="checkbox" value=""></label>
-        </div></th>
-      <th scope="row">{{ Date | date:'short' }}</th>
+          <label><input type="checkbox" value="" /></label>
+        </div>
+      </th>
+      <th scope="row">{{ Date | date: "short" }}</th>
       <td>{{ workout.workout }}</td>
       <td>{{ workout.Set }}</td>
       <td (click)="onDelete(i)">X</td>
     </tr>
-</tbody>
+  </tbody>
 </table>
 
 <div>
-  <input type="text" [(ngModel)]="workout" placeholder="Drill"  />
-  <input type="text" [(ngModel)]="set" placeholder="Reps"/>
+  <input type="text" [(ngModel)]="workout" placeholder="Drill" />
+  <input type="text" [(ngModel)]="set" placeholder="Reps" />
   <button (click)="onAddWorkout()">Add Drill</button>
 
-  <hr/>
+  <hr />
 
+  <p>
+    Rest Timer: {{ timeLeft }}
+    <button class="btn btn-secondary" (click)="startRest()">Start Timer</button>
+  </p>
 
-<p> Rest Timer: {{ timeLeft }} <button class="btn btn-secondary" (click)="startRest()">Start Timer </button> </p>
-
-<div class="container-fluid">
-  <label for ="range">Difficulty of Workout: {{ value }} </label>
-<input type="range" min="Easy" max="Hard" value="Medium" class="slider" id="myRange" (click)="slider()">
-
-
-<!-- <button (click)="onFetchWorkout()" >Fetch Workout</button> -->
-
+  <button (click)="onSubmitWorkout()" class="btn btn-btn">Log Workout</button>
 </div>
-</div>
-<form>
-  <h1>Journal</h1>
-  <div class="form-group">
-    <label for="comment">{{ Date | date: 'short'  }} </label>
-    <textarea class="form-control" rows="5" id="comment"></textarea>
-    <button (click)="onSubmitWorkout()" class="btn btn-btn">Log Workout</button>
+<hr>
+<h1>Your Space for Contemplation</h1>
+<div>
+  <form>
+    <label for="range">Difficulty of Workout: {{ value }} </label>
+    <input
+      type="range"
+      min="Easy"
+      max="Hard"
+      value="Medium"
+      class="slider"
+      id="myRange"
+      [(ngModel)]="Diffuculty"
+      name="Diffuculty"
+      (click)="slider()"
+    />
+    <label for="Duration">How long was your workout?</label>
+    <input
+      type="text"
+      class="form-control"
+      name="Duration"
+      [(ngModel)]="Duration"
+      placeholder="How long was todays workout?"
+    />
+    <label for="thoughts">What are your thoughts/concerns?</label>
+    <textarea
+      type="text"
+      class="form-control"
+      name="Thoughts"
+      [(ngModel)]="Thoughts"
+      placeholder="Whats on your mind?"
+    ></textarea>
+    <button (click)="onAddJournal()">Save Journal</button>
+  </form>
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button
+            class="btn btn-link btn-block text-left"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+
+            appDropdown #r="appDropdown"
+          >
+            {{ Date | date: "short" }} Journal Entry
+          </button>
+        </h2>
+      </div>
+      <div
+        id="collapseOne"  [ngClass]="{'in':r.isOpen}"
+        class="collapse"
+        aria-labelledby="headingOne"
+        data-parent="#accordionExample"
+        *ngFor="let todaysJournal of todaysJournal"
+      >
+        <div class="card-body">
+          {{ todaysJournal.Diffuculty }}
+          <hr />
+          {{ todaysJournal.Duration }}
+          <hr />
+          {{ todaysJournal.Thoughts }}
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+</div>

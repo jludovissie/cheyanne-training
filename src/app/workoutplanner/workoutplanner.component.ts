@@ -15,6 +15,10 @@ export class WorkoutplannerComponent implements OnInit {
   Date= new Date();
   value: number= 50;
   isFetching= false;
+  Diffuculty: null;
+  Duration: null;
+  Thoughts: null;
+  clicked= false;
 
      workouts= [
     { workout: 'Fastball', Set: '30 Pitches' },
@@ -22,7 +26,9 @@ export class WorkoutplannerComponent implements OnInit {
     { workout: 'Dropball', Set: '30 Picthes' },
     { workout: 'Change Up', Set: '30 Pitches'}
   ];
-
+    todaysJournal= [
+      {Diffuculty: "" , Duration: "", Thoughts:""}
+    ]
 
   constructor(private http:HttpClient) { }
 
@@ -33,7 +39,9 @@ export class WorkoutplannerComponent implements OnInit {
   }
  onDelete(i){
    this.workouts.splice(i,1)
-
+ }
+ onAddJournal(){
+   this.todaysJournal.push({Diffuculty:this.Diffuculty, Duration: this.Duration, Thoughts: this.Thoughts})
  }
   startRest(){
     if (this.timerInterval) clearInterval(this.timerInterval)
@@ -48,22 +56,29 @@ export class WorkoutplannerComponent implements OnInit {
     this.value = parseFloat((<HTMLInputElement>document.getElementById("myRange")).value)
   }
   onSubmitWorkout(){
-    this.http.post('https://courseproject-7f1e5-default-rtdb.firebaseio.com/posts.json', this.workouts).subscribe(resData =>{
+    this.http.post('https://course-project-3c8e4-default-rtdb.firebaseio.com/workouts.json', this.workouts).subscribe(resData =>{
       console.log(resData)
     }
 
     )
   }
   onFetchWorkout(){
-    this.http.get('https://courseproject-7f1e5-default-rtdb.firebaseio.com/posts.json' ).subscribe(workouts => {
+    this.http.get('https://course-project-3c8e4-default-rtdb.firebaseio.com/workouts.json' ).subscribe(workouts => {
       console.log(Object.entries(workouts));
       this.workouts = Object.entries(workouts)[0][1]
     });
     }
     onClearLog(){
       return this.http.delete(
-      'https://courseproject-7f1e5-default-rtdb.firebaseio.com/posts.json').subscribe(() => {
+      'https://course-project-3c8e4-default-rtdb.firebaseio.com/workouts.json').subscribe(() => {
         this.workouts = [];
       })
   }
+  onSubmitJournal(){
+
+    }
+    toggle(){
+      this.clicked = !this.clicked
+      console.log('worked')
+    }
 }

@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ContactComponent } from './contact/contact.component';
 import { DropdownDirective } from './navbar/dropdown.directive';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { DropdownDirective } from './navbar/dropdown.directive';
     LoginComponent,
     LoadingSpinnerComponent,
     ContactComponent,
-    DropdownDirective
+    DropdownDirective,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

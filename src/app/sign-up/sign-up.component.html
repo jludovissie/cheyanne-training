@@ -2,7 +2,15 @@
   Create your account!
   <small class="text-muted">you wont regret it</small>
 </h3>
-<form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm">
+<div class="alert alert-danger" *ngIf="error">
+  <p>
+    {{ error }}
+  </p>
+</div>
+<div *ngIf="isLoading" style="text-align: center;">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ngModel email required>
@@ -12,10 +20,7 @@
     <label for="password">Password</label>
     <input type="password" name="password" class="form-control" id="password" minlength="6" placeholder="Password" ngModel required>
   </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1" required >I have read terms and conditions</label>
-  </div>
+
   <button type="submit"  class="btn btn-primary">Submit</button>
 </form>
 

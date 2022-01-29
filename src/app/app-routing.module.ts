@@ -10,7 +10,7 @@ const routes: Routes = [
 
     {path:"", component: HomeComponent, pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
-    {path:'workout' , component: WorkoutplannerComponent, canActivate: [AuthGuardService]},
+    {path:'workout' , component: WorkoutplannerComponent},
     {path:'signup', component: SignUpComponent},
     {path:'login' , component: LoginComponent},
   ]

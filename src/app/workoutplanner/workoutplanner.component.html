@@ -23,23 +23,23 @@
   </tbody>
 </table>
 
-<div>
+<div style="text-align: center;">
   <input type="text" [(ngModel)]="workout" placeholder="Drill" />
   <input type="text" [(ngModel)]="set" placeholder="Reps" />
   <button (click)="onAddWorkout()">Add Drill</button>
 
   <hr />
 
-  <p>
+  <p style="text-align: center;">
     Rest Timer: {{ timeLeft }}
     <button class="btn btn-secondary" (click)="startRest()">Start Timer</button>
   </p>
 
-  <button (click)="onSubmitWorkout()" class="btn btn-btn">Log Workout</button>
+  <button (click)="onSubmitWorkout()" class="btn btn-success">Log Workout</button>
 </div>
 <hr>
-<h1>Your Space for Contemplation</h1>
-<div>
+<h1 style="text-align: center;">How'd it go? </h1>
+<div style="text-align: center;">
   <form>
     <label for="range">Difficulty of Workout: {{ value }} </label>
     <input

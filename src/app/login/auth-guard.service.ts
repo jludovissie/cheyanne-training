@@ -21,6 +21,4 @@ canActivate(route: ActivatedRouteSnapshot , state: RouterStateSnapshot){
   }}))
 }
 
-
-
 }
